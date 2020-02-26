@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.erudio.data.vo.PersonVO;
 import br.com.erudio.exception.ResourceNotFoundException;
 import br.com.erudio.exception.UnsupportedConversionException;
-import br.com.erudio.model.Person;
 import br.com.erudio.services.PersonService;
 
 @RestController
@@ -26,22 +26,22 @@ public class PersonController {
 	private PersonService service;
 	
 	@GetMapping(value="/{id}")
-	public Person findById(@PathVariable("id") long id) throws UnsupportedConversionException, ResourceNotFoundException {
+	public PersonVO findById(@PathVariable("id") long id) throws UnsupportedConversionException, ResourceNotFoundException {
 		return service.findById(id);
 	}
 	
 	@GetMapping
-	public List<Person> findAll() throws UnsupportedConversionException, ResourceNotFoundException {
+	public List<PersonVO> findAll() throws UnsupportedConversionException, ResourceNotFoundException {
 		return service.findAll();
 	}
 	
 	@PostMapping
-	public Person create(@RequestBody Person person){
+	public PersonVO create(@RequestBody PersonVO person){
 		return service.create(person);
 	}
 	
 	@PutMapping
-	public Person update(@RequestBody Person person) throws ResourceNotFoundException{
+	public PersonVO update(@RequestBody PersonVO person) throws ResourceNotFoundException{
 		return service.update(person);
 	}
 	

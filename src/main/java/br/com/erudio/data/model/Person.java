@@ -1,4 +1,4 @@
-package br.com.erudio.model;
+package br.com.erudio.data.model;
 
 import java.io.Serializable;
 
@@ -122,6 +122,19 @@ public class Person implements Serializable{
 		} else if (!lastName.equals(other.lastName))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(firstName);
+		builder.append(" ");
+		builder.append(lastName);
+		builder.append(", ");
+		builder.append(gender);
+		builder.append(", address: ");
+		builder.append(address);
+		return builder.toString();
 	}
 	
 }

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.erudio.data.converter.DozerConverter;
+import br.com.erudio.data.model.Person;
+import br.com.erudio.data.vo.PersonVO;
 import br.com.erudio.exception.ResourceNotFoundException;
-import br.com.erudio.model.Person;
 import br.com.erudio.repositories.PersonRepository;
 
 @Service
@@ -16,30 +18,37 @@ public class PersonService {
 	private PersonRepository repository;
 	
 	
-	public Person create(Person person) {
-		return repository.save(person);
+	public PersonVO create(PersonVO person) {
+		Person entity = DozerConverter.parseObject(person, Person.class);
+		entity = repository.save(entity);
+		return DozerConverter.parseObject(entity, PersonVO.class);
 	}
 	
-	public Person update(Person person) throws ResourceNotFoundException {
+	public PersonVO update(PersonVO person) throws ResourceNotFoundException {
+		Person entity = DozerConverter.parseObject(person, Person.class);
 		repository.findById(person.getId()).orElseThrow(
 				()-> new ResourceNotFoundException(
 						String.format("Cannot update, person with id = %d not found", person.getId())));
-		return repository.save(person);
+		entity = repository.save(entity);
+		return DozerConverter.parseObject(entity, PersonVO.class);
 	}
 	
 	public void delete(long id) throws ResourceNotFoundException {
-		Person person = findById(id);
-		repository.delete(person);
+		PersonVO person = findById(id);
+		Person entity = DozerConverter.parseObject(person, Person.class);
+		repository.delete(entity);
 	}
 	
-	public Person findById(Long id) throws ResourceNotFoundException {
-		return repository.findById(id).orElseThrow(
+	public PersonVO findById(Long id) throws ResourceNotFoundException {
+		Person entity = repository.findById(id).orElseThrow(
 				()-> new ResourceNotFoundException(
 						String.format("Person not found with id = %d", id)));
+		return DozerConverter.parseObject(entity, PersonVO.class);
 	}
 	
-	public List<Person> findAll(){
-		return repository.findAll();
+	public List<PersonVO> findAll(){
+		List<Person> persons = repository.findAll();
+		return DozerConverter.parseListObjects(persons, PersonVO.class);
 	}
 	
 }

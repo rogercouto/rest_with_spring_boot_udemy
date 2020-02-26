@@ -21,4 +21,12 @@ public class NumberUtil {
 		return strNumber.matches("[-+]?[0-9]*\\.?[0-9]+");
 	}
 	
+	public static boolean isPair(int i) {
+		return (i & 1) == 0;
+	}
+	
+	public static boolean isPair(long l) {
+		return (l & 1) == 0;
+	}
+	
 }
