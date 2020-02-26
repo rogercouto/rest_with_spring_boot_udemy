@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import br.com.erudio.exception.ExceptionResponse;
-import br.com.erudio.exception.ResourceNotExistsException;
+import br.com.erudio.exception.ResourceNotFoundException;
 import br.com.erudio.exception.UnsupportedConversionException;
 import br.com.erudio.exception.UnsupportedMathOperationException;
 
@@ -46,7 +46,7 @@ public class CustomizeResponseEntityHandler extends ResponseEntityExceptionHandl
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler(ResourceNotExistsException.class)
+	@ExceptionHandler(ResourceNotFoundException.class)
 	public final ResponseEntity<ExceptionResponse> handleResourceNotExistsException(Exception exception,WebRequest request){
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(), 
