@@ -1,6 +1,7 @@
 package br.com.erudio.data.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,9 @@ public class Person implements Serializable{
 	
 	@Column(nullable = false, length = 6)
 	private String gender;
+	
+	@Column(name = "birth_date", nullable = true)
+	private LocalDate birthDate;
 	
 	public Person() {
 	}
@@ -74,12 +78,37 @@ public class Person implements Serializable{
 		this.gender = gender;
 	}
 	
-	
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(firstName);
+		builder.append(" ");
+		builder.append(lastName);
+		builder.append(", ");
+		builder.append(gender);
+		builder.append(", address: ");
+		builder.append(address);
+		if (birthDate != null) {
+			builder.append(", birthDate: ");
+			builder.append(birthDate);
+		}
+		return builder.toString();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -100,6 +129,11 @@ public class Person implements Serializable{
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
+			return false;
+		if (birthDate == null) {
+			if (other.birthDate != null)
+				return false;
+		} else if (!birthDate.equals(other.birthDate))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
@@ -122,19 +156,6 @@ public class Person implements Serializable{
 		} else if (!lastName.equals(other.lastName))
 			return false;
 		return true;
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(firstName);
-		builder.append(" ");
-		builder.append(lastName);
-		builder.append(", ");
-		builder.append(gender);
-		builder.append(", address: ");
-		builder.append(address);
-		return builder.toString();
 	}
 	
 }

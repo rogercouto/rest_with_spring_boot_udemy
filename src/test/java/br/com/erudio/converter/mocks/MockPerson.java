@@ -21,7 +21,7 @@ public class MockPerson {
 	
 	public PersonVO mockVO(long id) {
 		PersonVO vo = new PersonVO();
-		vo.setId(id);
+		vo.setKey(id);
 		vo.setFirstName("VOPerson");
 		vo.setLastName(String.format("Test Nº %d", id));
 		vo.setAddress("Some adress");
