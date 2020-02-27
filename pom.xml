@@ -137,7 +137,7 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/rest_with_spring_boot_udemy?useTimezone=true&amp;serverTimezone=UTC&amp;useSSL=false</url>
+                    <url>jdbc:mysql://localhost:3306/rest_with_spring_boot_udemy?useTimezone=true&amp;serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</url>
                     <user>root</user>
                     <password>admin</password>
                     <locations>
