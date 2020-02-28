@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(value = "Book endpoint")
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/api/book")
 public class BookController {
 
 	@Autowired

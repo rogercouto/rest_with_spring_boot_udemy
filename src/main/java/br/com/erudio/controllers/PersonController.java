@@ -23,7 +23,7 @@ import br.com.erudio.exception.UnsupportedConversionException;
 import br.com.erudio.services.PersonService;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person")
 public class PersonController {
 
 	@Autowired
