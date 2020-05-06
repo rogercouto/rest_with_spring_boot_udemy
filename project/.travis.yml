@@ -1,8 +1,7 @@
 language: bash
 services: docker
 before_install:
-  - cd $TRAVIS_BUILD_DIR
-  - ls
+  - cd project
   - echo "We are in the Docker folder!"
 script:
   - docker-compose build
@@ -11,8 +10,8 @@ before_deploy:
 deploy:
   provider: script
   script: 
-    docker push rogerecouto/mysql-rest-with-spring-boot-udemy
-    docker push rogerecouto/rest-with-spring-boot-udemy
+    docker push rogerecouto/mysql-rest-with-spring-boot-udemy;
+    docker push rogerecouto/rest-with-spring-boot-udemy;
   on:
     branch: master
 notifications:
