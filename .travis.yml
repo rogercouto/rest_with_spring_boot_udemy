@@ -2,6 +2,7 @@ language: bash
 services: docker
 before_install:
   - cd $TRAVIS_BUILD_DIR
+  - ls
   - echo "We are in the Docker folder!"
 script:
   - docker-compose build
